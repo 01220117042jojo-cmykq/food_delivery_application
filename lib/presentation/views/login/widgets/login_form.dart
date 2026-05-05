@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../../../core/resources/color_manager.dart';
 import '../../../../presentation/common/widgets.dart';
 import '../../../../presentation/resources/routes_manager.dart';
-import '../../../resources/color_manager.dart';
-import '../bloc/login_cubit.dart';
-import '../bloc/login_state.dart';
+import '../../../manager/login/login_cubit.dart';
+import '../../../manager/login/login_state.dart';
 
 class LoginForm extends StatefulWidget {
   const LoginForm({super.key});

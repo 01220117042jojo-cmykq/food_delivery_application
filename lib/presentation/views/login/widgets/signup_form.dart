@@ -1,9 +1,9 @@
-// lib/presentation/login/widgets/signup_form.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../../../presentation/common/widgets.dart';
-import '../bloc/login_cubit.dart';
-import '../bloc/login_state.dart';
+import '../../../manager/login/login_cubit.dart';
+import '../../../manager/login/login_state.dart';
 
 class SignUpForm extends StatefulWidget {
   const SignUpForm({super.key});

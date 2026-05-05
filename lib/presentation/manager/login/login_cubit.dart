@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../data/repository/auth_repository.dart';
+
+import '../../../data/repositories/auth_repository.dart';
 import 'login_state.dart';
 
 class LoginCubit extends Cubit<LoginState> {
@@ -50,7 +51,16 @@ class LoginCubit extends Cubit<LoginState> {
     emit(LoginLoading());
     try {
       await _authRepository.forgotPassword(email);
-      emit(LoginSuccess()); //
+      emit(LoginSuccess());
+    } catch (e) {
+      emit(LoginError(e.toString()));
+    }
+  }
+
+  Future<void> logout() async {
+    try {
+      await _authRepository.logout();
+      emit(LoginInitial());
     } catch (e) {
       emit(LoginError(e.toString()));
     }

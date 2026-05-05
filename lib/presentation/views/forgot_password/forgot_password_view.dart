@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../core/screens/login/bloc/login_cubit.dart';
-import '../../core/screens/login/bloc/login_state.dart';
-import '../../data/repository/auth_repository.dart';
-import '../common/widgets.dart';
+
+import '../../../data/repositories/auth_repository.dart';
+import '../../common/widgets.dart';
+import '../../manager/login/login_cubit.dart';
+import '../../manager/login/login_state.dart';
 
 class ForgotPasswordView extends StatefulWidget {
   const ForgotPasswordView({super.key});

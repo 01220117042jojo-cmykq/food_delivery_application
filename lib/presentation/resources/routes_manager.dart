@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:food_delivery_application/core/screens/login/login_view.dart';
-import 'package:food_delivery_application/core/screens/splash/splash_view.dart';
+
+import '../views/forgot_password/forgot_password_view.dart';
+import '../views/home/home_view.dart';
+import '../views/login/login_view.dart';
+import '../views/main/main_view.dart';
+import '../views/splash/splash_view.dart';
 
 class RouteGenerator {
   static Route<dynamic> getRoute(RouteSettings settings) {
@@ -9,6 +13,13 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const SplashView());
       case Routes.loginRoute:
         return MaterialPageRoute(builder: (_) => const LoginView());
+      case Routes.forgotPasswordRoute:
+        return MaterialPageRoute(builder: (_) => const ForgotPasswordView());
+
+      case Routes.mainRoute:
+        return MaterialPageRoute(builder: (_) => const MainView());
+      case Routes.homeRoute:
+        return MaterialPageRoute(builder: (_) => const HomeView());
       case Routes.onboardingRoute:
         return MaterialPageRoute(
           builder: (_) =>
@@ -37,4 +48,5 @@ class Routes {
   static const String mainRoute = "/main";
   static const String foodDetailsRoute = "/foodDetails";
   static const String forgotPasswordRoute = "/forgotPassword";
+  static const String homeRoute = "/home";
 }

@@ -1,5 +1,5 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class AuthRepository {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
@@ -39,7 +39,7 @@ class AuthRepository {
             'createdAt': FieldValue.serverTimestamp(),
           })
           .then((value) {
-            print('Firestore Data Added');
+            print('Firestore Data Added And User Registered');
           })
           .catchError((error) {
             print('Firestore Error: $error');
@@ -59,5 +59,9 @@ class AuthRepository {
     } on FirebaseAuthException catch (e) {
       throw Exception(e.message);
     }
+  }
+
+  Future<void> logout() async {
+    await _firebaseAuth.signOut();
   }
 }

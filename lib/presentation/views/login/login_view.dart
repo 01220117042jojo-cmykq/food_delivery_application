@@ -1,14 +1,14 @@
-// lib/presentation/login/login_view.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../data/repository/auth_repository.dart';
-import '../../resources/assets_manager.dart';
-import '../../resources/color_manager.dart';
-import '../../resources/values_manager.dart';
-import 'bloc/login_cubit.dart';
-import 'bloc/login_state.dart';
-import 'widgets/login_form.dart'; // استيراد الملف الجديد
+import '../../../core/resources/assets_manager.dart';
+import '../../../core/resources/color_manager.dart';
+import '../../../core/resources/values_manager.dart';
+import '../../common/ui_helper.dart';
+import '../../manager/login/login_cubit.dart';
+import '../../manager/login/login_state.dart';
+import '../../resources/routes_manager.dart';
+import 'widgets/login_form.dart';
 import 'widgets/signup_form.dart';
 
 class LoginView extends StatefulWidget {
@@ -36,40 +36,31 @@ class _LoginViewState extends State<LoginView>
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => LoginCubit(AuthRepository()),
-      child: Scaffold(
-        backgroundColor: const Color(0xFFF2F2F2),
-        body: BlocListener<LoginCubit, LoginState>(
-          listener: (context, state) {
-            if (state is LoginSuccess) {
-              ScaffoldMessenger.of(
-                context,
-              ).showSnackBar(const SnackBar(content: Text("Success!")));
-              // Navigator.pushNamed(context, Routes.homeRoute);
-            } else if (state is LoginError) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text(state.message),
-                  backgroundColor: Colors.red,
-                ),
-              );
-            }
-          },
-          child: Column(
-            children: [
-              _buildTopHeader(),
-              Expanded(
-                child: TabBarView(
-                  controller: _tabController,
-                  children: const [
-                    LoginForm(), // الويدجت اللي فصلناه
-                    SignUpForm(), // الويدجت اللي فصلناه
-                  ],
-                ),
+    return Scaffold(
+      backgroundColor: const Color(0xFFF2F2F2),
+      body: BlocListener<LoginCubit, LoginState>(
+        listener: (context, state) {
+          if (state is LoginSuccess) {
+            context.showSuccessBar("Success!");
+
+            Navigator.pushReplacementNamed(context, Routes.mainRoute);
+          } else if (state is LoginError) {
+            context.showErrorBar(state.message);
+          }
+        },
+        child: Column(
+          children: [
+            _buildTopHeader(),
+            Expanded(
+              child: TabBarView(
+                controller: _tabController,
+                children: const [
+                  LoginForm(),
+                  SignUpForm(),
+                ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
