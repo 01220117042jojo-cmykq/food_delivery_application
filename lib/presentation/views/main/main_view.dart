@@ -6,6 +6,7 @@ import '../../../presentation/resources/routes_manager.dart';
 import '../../manager/internet/internet_cubit.dart';
 import '../../manager/login/login_cubit.dart';
 import '../home/home_view.dart';
+import '../profile/profile_view.dart';
 
 class MainView extends StatefulWidget {
   const MainView({super.key});
@@ -21,7 +22,7 @@ class _MainViewState extends State<MainView> {
     const HomeView(),
     const Center(child: Text("Favorites Screen")),
     const Center(child: Text("History Screen")),
-    const Center(child: Text("Profile Screen")),
+    const ProfileView(),
   ];
 
   @override
@@ -124,7 +125,14 @@ class _MainViewState extends State<MainView> {
       child: Column(
         children: [
           const SizedBox(height: 80),
-          _drawerItem(Icons.person_outline, "Profile"),
+          _drawerItem(Icons.person_outline, "Profile",
+              onTap: () {
+                Navigator.pop(context);
+                setState(() {
+                  _currentIndex = 3;
+                });
+              }
+          ),
           _drawerItem(Icons.shopping_cart_outlined, "Orders"),
           _drawerItem(Icons.local_offer_outlined, "Offer and promo"),
           _drawerItem(Icons.policy_outlined, "Privacy policy"),
@@ -135,9 +143,7 @@ class _MainViewState extends State<MainView> {
             "Sign-out",
             isLogout: true,
             onTap: () async {
-              // تنفيذ الـ Logout الحقيقي من Firebase
               await context.read<LoginCubit>().logout();
-              // الرجوع لصفحة الـ Login ومسح كل الـ Routes السابقة
               if (context.mounted) {
                 Navigator.pushNamedAndRemoveUntil(
                   context,

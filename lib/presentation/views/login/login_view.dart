@@ -7,9 +7,11 @@ import '../../../core/resources/values_manager.dart';
 import '../../common/ui_helper.dart';
 import '../../manager/login/login_cubit.dart';
 import '../../manager/login/login_state.dart';
+import '../../manager/register/register_cubit.dart';
+import '../../manager/register/register_state.dart';
 import '../../resources/routes_manager.dart';
+import '../register/widgets/signup_form.dart';
 import 'widgets/login_form.dart';
-import 'widgets/signup_form.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -38,16 +40,29 @@ class _LoginViewState extends State<LoginView>
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFF2F2F2),
-      body: BlocListener<LoginCubit, LoginState>(
-        listener: (context, state) {
-          if (state is LoginSuccess) {
-            context.showSuccessBar("Success!");
-
-            Navigator.pushReplacementNamed(context, Routes.mainRoute);
-          } else if (state is LoginError) {
-            context.showErrorBar(state.message);
-          }
-        },
+      body: MultiBlocListener(
+        listeners: [
+          BlocListener<LoginCubit, LoginState>(
+            listener: (context, state) {
+              if (state is LoginSuccess) {
+                context.showSuccessBar("Login successful");
+                Navigator.pushReplacementNamed(context, Routes.mainRoute);
+              } else if (state is LoginError) {
+                context.showErrorBar(state.message);
+              }
+            },
+          ),
+          BlocListener<RegisterCubit, RegisterState>(
+            listener: (context, state) {
+              if (state is RegisterSuccess) {
+                context.showSuccessBar("Account created successfully!");
+                Navigator.pushReplacementNamed(context, Routes.mainRoute);
+              } else if (state is RegisterError) {
+                context.showErrorBar(state.message);
+              }
+            },
+          ),
+        ],
         child: Column(
           children: [
             _buildTopHeader(),

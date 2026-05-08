@@ -4,15 +4,15 @@ import '../../../data/repositories/auth_repository.dart';
 import 'login_state.dart';
 
 class LoginCubit extends Cubit<LoginState> {
-  final AuthRepository _authRepository;
+  final AuthRepository authRepository;
 
-  LoginCubit(this._authRepository) : super(LoginInitial());
+  LoginCubit(this.authRepository) : super(LoginInitial());
 
   Future<void> login(String email, String password) async {
     emit(LoginLoading());
 
     try {
-      await _authRepository.login(email, password);
+      await authRepository.login(email, password);
 
       emit(LoginSuccess());
     } catch (e) {
@@ -21,27 +21,27 @@ class LoginCubit extends Cubit<LoginState> {
   }
 
   //
-  Future<void> register({
-    required String email,
-    required String password,
-    required String name,
-    required String phone,
-    required String address,
-  }) async {
-    emit(LoginLoading());
-    try {
-      await _authRepository.signUp(
-        email: email,
-        password: password,
-        name: name,
-        phone: phone,
-        address: address,
-      );
-      emit(LoginSuccess());
-    } catch (e) {
-      emit(LoginError(e.toString()));
-    }
-  }
+  // Future<void> register({
+  //   required String email,
+  //   required String password,
+  //   required String name,
+  //   required String phone,
+  //   required String address,
+  // }) async {
+  //   emit(LoginLoading());
+  //   try {
+  //     await authRepository.signUp(
+  //       email: email,
+  //       password: password,
+  //       name: name,
+  //       phone: phone,
+  //       address: address,
+  //     );
+  //     emit(LoginSuccess());
+  //   } catch (e) {
+  //     emit(LoginError(e.toString()));
+  //   }
+  // }
 
   Future<void> forgotPassword(String email) async {
     if (email.isEmpty) {
@@ -50,7 +50,7 @@ class LoginCubit extends Cubit<LoginState> {
     }
     emit(LoginLoading());
     try {
-      await _authRepository.forgotPassword(email);
+      await authRepository.forgotPassword(email);
       emit(LoginSuccess());
     } catch (e) {
       emit(LoginError(e.toString()));
@@ -59,7 +59,7 @@ class LoginCubit extends Cubit<LoginState> {
 
   Future<void> logout() async {
     try {
-      await _authRepository.logout();
+      await authRepository.logout();
       emit(LoginInitial());
     } catch (e) {
       emit(LoginError(e.toString()));

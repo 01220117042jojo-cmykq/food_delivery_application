@@ -20,7 +20,7 @@ extension SnackBarExtension on BuildContext {
         content: Text(message),
         backgroundColor: ColorManager.primary,
         behavior: SnackBarBehavior.floating,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       ),
     );
   }

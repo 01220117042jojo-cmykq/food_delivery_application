@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../presentation/common/widgets.dart';
-import '../../../manager/login/login_cubit.dart';
-import '../../../manager/login/login_state.dart';
+import '../../../common/widgets.dart';
+import '../../../manager/register/register_cubit.dart';
+import '../../../manager/register/register_state.dart';
 
 class SignUpForm extends StatefulWidget {
   const SignUpForm({super.key});
@@ -31,7 +31,7 @@ class _SignUpFormState extends State<SignUpForm> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<LoginCubit, LoginState>(
+    return BlocBuilder<RegisterCubit, RegisterState>(
       builder: (context, state) {
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
@@ -69,8 +69,8 @@ class _SignUpFormState extends State<SignUpForm> {
                 const SizedBox(height: 20),
                 buildSubmitButton(
                   title: "Sign-up",
-                  isLoading: state is LoginLoading,
-                  onPressed: () => context.read<LoginCubit>().register(
+                  isLoading: state is RegisterLoading,
+                  onPressed: () => context.read<RegisterCubit>().register(
                     email: _emailController.text.trim(),
                     password: _passwordController.text,
                     name: _nameController.text,
