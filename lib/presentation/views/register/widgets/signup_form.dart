@@ -1,9 +1,10 @@
-// lib/presentation/login/widgets/signup_form.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../presentation/common/widgets.dart';
-import '../bloc/login_cubit.dart';
-import '../bloc/login_state.dart';
+import 'package:food_delivery_application/core/resources/constants_manager.dart';
+
+import '../../../common/widgets.dart';
+import '../../../manager/register/register_cubit.dart';
+import '../../../manager/register/register_state.dart';
 
 class SignUpForm extends StatefulWidget {
   const SignUpForm({super.key});
@@ -31,7 +32,7 @@ class _SignUpFormState extends State<SignUpForm> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<LoginCubit, LoginState>(
+    return BlocBuilder<RegisterCubit, RegisterState>(
       builder: (context, state) {
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
@@ -39,38 +40,38 @@ class _SignUpFormState extends State<SignUpForm> {
             child: Column(
               children: [
                 buildTextFormField(
-                  label: "Full Name",
-                  hint: "Marvis Ighedosa",
+                  label: AppConstants.labelTextName,
+                  hint: AppConstants.hintTextName,
                   controller: _nameController,
                 ),
                 buildTextFormField(
-                  label: "Email address",
-                  hint: "example@gmail.com",
+                  label: AppConstants.labelTextEmail,
+                  hint: AppConstants.hintTextEmail,
                   controller: _emailController,
                 ),
                 buildTextFormField(
-                  label: "Password",
-                  hint: "********",
+                  label: AppConstants.labelTextPassword,
+                  hint: AppConstants.hintTextPassword,
                   isPassword: true,
                   controller: _passwordController,
                 ),
                 buildTextFormField(
-                  label: "Phone",
-                  hint: "+234...",
+                  label: AppConstants.labelTextPhone,
+                  hint: AppConstants.hintTextPhone,
                   controller: _phoneController,
                   type: TextInputType.phone,
                 ),
                 buildTextFormField(
-                  label: "Address",
-                  hint: "No 15 uti street...",
+                  label: AppConstants.labelTextAddress,
+                  hint: AppConstants.hintTextAddress,
                   controller: _addressController,
                 ),
 
                 const SizedBox(height: 20),
                 buildSubmitButton(
-                  title: "Sign-up",
-                  isLoading: state is LoginLoading,
-                  onPressed: () => context.read<LoginCubit>().register(
+                  title: AppConstants.signUp,
+                  isLoading: state is RegisterLoading,
+                  onPressed: () => context.read<RegisterCubit>().register(
                     email: _emailController.text.trim(),
                     password: _passwordController.text,
                     name: _nameController.text,
