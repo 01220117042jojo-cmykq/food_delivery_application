@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:food_delivery_application/core/resources/constants_manager.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../../../data/models/user_model.dart';
@@ -48,20 +49,21 @@ class ProfileView extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Text(
-              "My profile",
+              AppConstants.myProfile,
               style: TextStyle(fontSize: 34, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 25),
             _buildHeaderRow(context, user),
             _buildUserCard(context, user),
             const SizedBox(height: 20),
-            _buildMenuItem("Orders", Icons.shopping_cart_outlined),
-            _buildMenuItem("Pending reviews", Icons.rate_review_outlined),
-            _buildMenuItem("Faq", Icons.help_outline),
-            _buildMenuItem("Help", Icons.info_outline),
+            _buildMenuItem(AppConstants.orders, Icons.shopping_cart_outlined),
+            _buildMenuItem(
+                AppConstants.pendingReviews, Icons.rate_review_outlined),
+            _buildMenuItem(AppConstants.faq, Icons.help_outline),
+            _buildMenuItem(AppConstants.help, Icons.info_outline),
             const SizedBox(height: 40),
             buildSubmitButton(
-              title: "Update",
+              title: AppConstants.update,
               isLoading: state is ProfileLoading,
               onPressed: () {},
             ),
@@ -77,13 +79,13 @@ class ProfileView extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         const Text(
-          "Personal details",
+          AppConstants.personalDetails,
           style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
         ),
         TextButton(
           onPressed: () {},
           child: const Text(
-            "change",
+            AppConstants.change,
             style: TextStyle(color: Color(0xFFFA4A0C)),
           ),
         ),
@@ -210,7 +212,7 @@ class ProfileView extends StatelessWidget {
           children: [
             ListTile(
               leading: const Icon(Icons.camera_alt),
-              title: const Text('Take Photo'),
+              title: const Text(AppConstants.takePhoto),
               onTap: () {
                 Navigator.pop(builderContext);
                 context.read<ProfileCubit>().pickAndUploadImage(
@@ -220,7 +222,7 @@ class ProfileView extends StatelessWidget {
             ),
             ListTile(
               leading: const Icon(Icons.photo_library),
-              title: const Text('Upload from Gallery'),
+              title: const Text(AppConstants.uploadFromGallery),
               onTap: () {
                 Navigator.pop(builderContext);
                 context.read<ProfileCubit>().pickAndUploadImage(

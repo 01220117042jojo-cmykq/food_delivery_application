@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/resources/color_manager.dart';
+import '../../../core/resources/constants_manager.dart';
 import '../../../presentation/resources/routes_manager.dart';
 import '../../manager/internet/internet_cubit.dart';
 import '../../manager/login/login_cubit.dart';
@@ -20,8 +21,8 @@ class _MainViewState extends State<MainView> {
 
   final List<Widget> _pages = [
     const HomeView(),
-    const Center(child: Text("Favorites Screen")),
-    const Center(child: Text("History Screen")),
+    const Center(child: Text(AppConstants.favoritesScreen)),
+    const Center(child: Text(AppConstants.historyScreen)),
     const ProfileView(),
   ];
 
@@ -76,7 +77,7 @@ class _MainViewState extends State<MainView> {
             ),
             const SizedBox(height: 30),
             const Text(
-              "No internet Connection",
+              AppConstants.noInternetConnection,
               style: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
@@ -95,7 +96,6 @@ class _MainViewState extends State<MainView> {
               height: 60,
               child: ElevatedButton(
                 onPressed: () {
-                  // هنا ممكن تضيف logic لإعادة الفحص يدوياً لو حبيت
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: ColorManager.primary,

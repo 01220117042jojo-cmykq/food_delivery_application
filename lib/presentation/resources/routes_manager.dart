@@ -20,11 +20,11 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const MainView());
       case Routes.homeRoute:
         return MaterialPageRoute(builder: (_) => const HomeView());
-      case Routes.onboardingRoute:
-        return MaterialPageRoute(
-          builder: (_) =>
-              const Scaffold(body: Center(child: Text("Onboarding"))),
-        );
+      // case Routes.onboardingRoute:
+      //   return MaterialPageRoute(
+      //     builder: (_) =>
+      //         const Scaffold(body: Center(child: Text("Onboarding"))),
+      //   );
       default:
         return unDefinedRoute();
     }

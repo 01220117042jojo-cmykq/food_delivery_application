@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:food_delivery_application/core/resources/constants_manager.dart';
 
 import '../../../core/resources/assets_manager.dart';
 import '../../../core/resources/color_manager.dart';
@@ -57,7 +58,7 @@ class _SplashViewState extends State<SplashView> {
                 ),
                 const SizedBox(height: AppSize.s20),
                 const Text(
-                  "Food for\nEveryone",
+                  AppConstants.foodForEveryone,
                   style: TextStyle(
                     fontSize: 60,
                     color: Colors.white,
@@ -97,7 +98,7 @@ class _SplashViewState extends State<SplashView> {
             left: AppPadding.p40,
             right: AppPadding.p40,
             child: buildSubmitButton(
-              title: "Get started",
+              title: AppConstants.getStarted,
               isLoading: false,
               backgroundColor: Colors.white,
               textColor: ColorManager.primary,

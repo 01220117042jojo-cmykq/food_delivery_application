@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:food_delivery_application/core/resources/constants_manager.dart';
 
 import '../../../common/widgets.dart';
 import '../../../manager/register/register_cubit.dart';
@@ -39,36 +40,36 @@ class _SignUpFormState extends State<SignUpForm> {
             child: Column(
               children: [
                 buildTextFormField(
-                  label: "Full Name",
-                  hint: "Marvis Ighedosa",
+                  label: AppConstants.labelTextName,
+                  hint: AppConstants.hintTextName,
                   controller: _nameController,
                 ),
                 buildTextFormField(
-                  label: "Email address",
-                  hint: "example@gmail.com",
+                  label: AppConstants.labelTextEmail,
+                  hint: AppConstants.hintTextEmail,
                   controller: _emailController,
                 ),
                 buildTextFormField(
-                  label: "Password",
-                  hint: "********",
+                  label: AppConstants.labelTextPassword,
+                  hint: AppConstants.hintTextPassword,
                   isPassword: true,
                   controller: _passwordController,
                 ),
                 buildTextFormField(
-                  label: "Phone",
-                  hint: "+234...",
+                  label: AppConstants.labelTextPhone,
+                  hint: AppConstants.hintTextPhone,
                   controller: _phoneController,
                   type: TextInputType.phone,
                 ),
                 buildTextFormField(
-                  label: "Address",
-                  hint: "No 15 uti street...",
+                  label: AppConstants.labelTextAddress,
+                  hint: AppConstants.hintTextAddress,
                   controller: _addressController,
                 ),
 
                 const SizedBox(height: 20),
                 buildSubmitButton(
-                  title: "Sign-up",
+                  title: AppConstants.signUp,
                   isLoading: state is RegisterLoading,
                   onPressed: () => context.read<RegisterCubit>().register(
                     email: _emailController.text.trim(),

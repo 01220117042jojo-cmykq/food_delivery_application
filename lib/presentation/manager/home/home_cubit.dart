@@ -8,7 +8,7 @@ class HomeCubit extends Cubit<HomeState> {
 
   HomeCubit(this._foodRepository) : super(HomeInitial());
 
-  void getFoods(String category) {
+  Future<void> getFoods(String category) async {
     emit(HomeLoading());
     try {
       final foods = _foodRepository.getFoodsByCategory(category);
